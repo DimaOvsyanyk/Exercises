@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.databinding.BindingAdapter" />
+
+        <import type="com.dimaoprog.exercises.Converter" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="detailModel"
+            type="com.dimaoprog.exercises.exerciseDetail.ExerciseDetailViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:context=".exerciseDetail.ExerciseDetailFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:visibility="@{detailModel.imageList.size == 0 ? View.GONE : View.VISIBLE}">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/start_position_image"
+                    app:url="@{detailModel.imageList.size == 0 ? null : detailModel.imageList.get(0).image}" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/finish_position_image"
+                    app:url="@{detailModel.imageList.size == 0 ? null : detailModel.imageList.get(1).image}" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:background="@drawable/shape_item_details"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{detailModel.exerciseInfoSimple.name}"
+                        android:textSize="22sp"
+                        tools:text="Name" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@{detailModel.exerciseInfoSimple.category}"
+                        android:textSize="14sp"
+                        tools:text="Muscle group" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{detailModel.exerciseInfoSimple.muscles}"
+                        android:textSize="14sp"
+                        tools:text="Muscles" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{detailModel.exerciseInfoSimple.musclesSecondary}"
+                        android:textSize="14sp"
+                        tools:text="Secondary muscles" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@{detailModel.exerciseInfoSimple.equipment}"
+                        android:textSize="14sp"
+                        tools:text="Equipment" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@{Converter.htmlToTextView(detailModel.exerciseInfoSimple.description)}"
+                        android:textSize="18sp"
+                        tools:text="Description" />
+
+
+                </LinearLayout>
+
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:visibility="@{detailModel.loading ? View.VISIBLE : View.INVISIBLE}" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</layout>

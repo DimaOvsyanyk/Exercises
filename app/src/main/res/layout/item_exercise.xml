@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.dimaoprog.exercises.Converter" />
+
+        <variable
+            name="exercise"
+            type="com.dimaoprog.exercises.entries.Exercise" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/shape_item_exercise"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_m">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@{exercise.name}"
+                android:textSize="18sp"
+                tools:text="Name" />
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="end"-->
+            <!--android:text="@{String.valueOf(exercise.category)}"-->
+            <!--tools:text="Category" />-->
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_m"
+            android:maxLines="5"
+            android:text="@{Converter.htmlToTextView(exercise.description)}"
+            android:textSize="18sp"
+            tools:text="Description" />
+
+    </LinearLayout>
+</layout>
